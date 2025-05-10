@@ -2,123 +2,115 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>From My Heart to Yours, Mom 💝</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mother's Day</title>
   <style>
     body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #ffe6f0;
       margin: 0;
-      font-family: 'Nunito', sans-serif;
-      background: #ffe6f0;
+      padding: 0;
       text-align: center;
-      color: #4b2c2c;
     }
 
-    .header {
-      padding: 40px 20px 20px;
+    h1 {
+      font-size: 3em;
+      color: #ff3366;
+      margin-top: 30px;
+      font-family: 'Brush Script MT', cursive;
     }
 
-    .header h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3.5em;
-      color: #ff4d6d;
-      margin-bottom: 10px;
+    p {
+      font-size: 1.2em;
+      margin: 10px 0 20px 0;
     }
 
-    .photo-circle {
+    .profile-pic {
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #ff85a2;
-      box-shadow: 0 0 15px #ffb6c1;
-      margin: 0 auto 20px;
+      margin-top: 20px;
+      border: 5px solid #ff99bb;
       cursor: pointer;
       transition: transform 0.3s;
     }
 
-    .photo-circle:hover {
-      transform: scale(1.05);
-    }
-
-    .message-box {
-      max-width: 600px;
-      background: #fff0f5;
-      border: 2px dashed #ff69b4;
-      border-radius: 20px;
-      padding: 25px;
-      margin: 20px auto;
-      display: none;
-      font-size: 1.1em;
+    .profile-pic:hover {
+      transform: scale(1.1);
     }
 
     .gallery-section {
-      margin-top: 80px;
+      margin: 50px 0;
     }
 
     .gallery {
       display: flex;
-      overflow-x: auto;
-      gap: 10px;
-      padding: 20px;
       justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 20px;
     }
 
     .gallery img {
-      width: 160px;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 12px;
-      border: 3px solid #ffc0cb;
-      box-shadow: 0 0 10px #ff99aa;
-      transition: transform 0.3s;
+      width: 200px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .gallery img:hover {
       transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
     }
 
-    .footer {
-      padding: 20px;
-      font-size: 0.9em;
-      color: #8b5e5e;
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #fff;
     }
   </style>
 </head>
 <body>
 
-  <div class="header">
-    <h1>You Are the Heart of My World 💖</h1>
-    <p>Click your photo to open a message just for you.</p>
-    <img src="mummy selfie.jpg" class="photo-circle" onclick="toggleMessage()" alt="Mom">
-  </div>
-
-  <div class="message-box" id="messageBox">
-    <p>Dear Mom,</p>
-    <p>You are my heart, my guide, and my constant. Every smile you gave me, every hug you shared — they shaped my life in the most beautiful way. ❤️</p>
-    <p>Thank you for your strength, your love, and your endless belief in me. I love you more than words can ever say.</p>
-    <p>Forever your child, with love 💫</p>
-  </div>
+  <h1>You Are the Heart of My World 💖</h1>
+  <p>Click your photo to open a message just for you.</p>
+  <img src="mummy pic.png" alt="Mom's Picture" class="profile-pic" onclick="window.location.href='message.html'">
 
   <div class="gallery-section">
     <h2 style="color:#d6336c;">💌 A Gallery of Moments with You 💌</h2>
     <div class="gallery">
-      <img src="all of us toget.jpg" alt="Mom Pic 1">
-      <img src="me and mummy.jpg" alt="Mom Pic 2">
-      <img src="mummy and simran.jpg" alt="Mom Pic 3">
-      <img src="mummy and me 2.jpg" alt="Mom Pic 4">
+      <img src="all of us toget.jpg" alt="Mom Pic 1" onclick="openLightbox(this.src)">
+      <img src="me and mummy.jpg" alt="Mom Pic 2" onclick="openLightbox(this.src)">
+      <img src="mummy and simran.jpg" alt="Mom Pic 3" onclick="openLightbox(this.src)">
+      <img src="mummy and me 2.jpg" alt="Mom Pic 4" onclick="openLightbox(this.src)">
     </div>
   </div>
 
-  <div class="footer">
-    Made with love by usha gurleen kaur 💗
+  <!-- Lightbox Modal -->
+  <div id="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="">
   </div>
 
   <script>
-    function toggleMessage() {
-      const box = document.getElementById('messageBox');
-      box.style.display = box.style.display === 'block' ? 'none' : 'block';
+    function openLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      lightbox.style.display = 'flex';
     }
   </script>
-
 </body>
 </html>
