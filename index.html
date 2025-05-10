@@ -21,12 +21,12 @@
       overflow-x: hidden;
     }
 
-    .heart-bg {
-      background: url('https://media.giphy.com/media/l0HlQ7LRalXKgc4rm/giphy.gif') no-repeat center center;
-      background-size: 200px;
+    .hero-bg {
+      background: url('https://media.giphy.com/media/3ohs4BSacFKI7A717y/giphy.gif') no-repeat center center;
+      background-size: cover;
       height: 200px;
       margin: 0 auto 30px;
-      animation: pulse 2s infinite;
+      border-radius: 12px;
     }
 
     .header {
@@ -38,12 +38,6 @@
       font-size: 3.5em;
       color: #ff4d6d;
       margin-bottom: 10px;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.1); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.9; }
     }
 
     .photo-circle {
@@ -109,7 +103,7 @@
 <body>
 
   <div class="header">
-    <div class="heart-bg"></div>
+    <div class="hero-bg"></div>
     <h1>You Are the Heart of My World 💖</h1>
     <p>Click your photo to open a message just for you.</p>
     <img src="mummy selfie.jpg" class="photo-circle" onclick="toggleMessage()" alt="Mom">
